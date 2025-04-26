@@ -14,13 +14,25 @@ class Salle extends Model
         'type',
         'capacite',
         'equipements',
-        'localisation'
+        'localisation',
+        'idResponsable'
     ];
 
     protected $casts = [
-        'equipements' => 'json'
+        'equipements' => 'array'
     ];
 
+    /**
+     * Relation avec le responsable de la salle
+     */
+    public function responsable()
+    {
+        return $this->belongsTo(User::class, 'idResponsable');
+    }
+
+    /**
+     * Relation avec les créneaux
+     */
     public function creneaux()
     {
         return $this->hasMany(Creneau::class);
