@@ -15,7 +15,10 @@ return new class extends Migration
             $table->integer('capacite');
             $table->json('equipements')->nullable();
             $table->string('localisation');
+            $table->unsignedBigInteger('idResponsable')->nullable();
             $table->timestamps();
+
+            $table->foreign('idResponsable')->references('id')->on('users')->onDelete('set null');
         });
     }
 
