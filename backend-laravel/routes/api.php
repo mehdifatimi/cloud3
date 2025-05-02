@@ -18,11 +18,13 @@ use App\Http\Controllers\ReservationController;
 */
 
 // Routes pour les salles
-Route::get('/salles', [SalleController::class, 'index']);
-Route::get('/salles/{id}', [SalleController::class, 'show']);
-Route::post('/salles', [SalleController::class, 'store']);
-Route::put('/salles/{id}', [SalleController::class, 'update']);
-Route::delete('/salles/{id}', [SalleController::class, 'destroy']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/salles', [SalleController::class, 'index']);
+    Route::get('/salles/{id}', [SalleController::class, 'show']);
+    Route::post('/salles', [SalleController::class, 'store']);
+    Route::put('/salles/{id}', [SalleController::class, 'update']);
+    Route::delete('/salles/{id}', [SalleController::class, 'destroy']);
+});
 
 // Routes pour les créneaux
 Route::resource('creneaux', CreneauController::class);
